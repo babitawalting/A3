@@ -33,6 +33,13 @@ for Salaris_bruto in vwList:
 #aantal werknemers binnen 2 jaar met pensioen
 
 #aantal chauffeurs
+totalDrivers = 0
+
+for vw in vwList:
+   if vw["Functie"] == "Chauffeur":
+    totalDrivers += 1
+
+print(f"Aantal chauffeurs: {totalDrivers}")
 
 #top 10 langst in dienst
 
