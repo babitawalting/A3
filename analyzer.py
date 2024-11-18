@@ -24,6 +24,8 @@ listLength = 0
 listLength = len(vwList)
 totalIncome = 0
 averageIncome = 0
+totalFunctionIncome = 0
+averageFunctionIncome = 0
 
 totalDrivers = 0
 
@@ -37,6 +39,12 @@ if choice =="1":
     print(f"Gemiddeld salaris van alle werknemers:\n{averageIncome} euro")
     
 #gemiddeld salaris voor functie X
+elif choice =="2":
+    function = input("Voer een functie in waar je het gemiddeld van wilt weten: ")
+    for Salaris_Bruto in vwList:
+        averageFunctionIncome = totalFunctionIncome / listLength
+    print(f"Gemiddelde salaris van {function}:\n{averageFunctionIncome} euro")
+
 
 #aantal werknemers binnen 2 jaar met pensioen
 
@@ -47,7 +55,7 @@ elif choice =="4":
         if vw["Functie"] == "Chauffeur":
             totalDrivers += 1
 
-print(f"Aantal chauffeurs: {totalDrivers}")
+    print(f"Aantal chauffeurs: {totalDrivers}")
 
 #top 10 langst in dienst
 
