@@ -5,10 +5,15 @@ myReport = open("report.txt", "w")
 reader = csv.DictReader(vwFile, delimiter=";")
 vwList = list(reader)
 
+#import os to clear screen
+import os
 #import datetime for choice 5
 import datetime
 
+isRunning = True
+
 #start-menu
+os.system("cls")
 print("Keuzemenu:")
 print("1. Gemiddeld salaris")
 print("2. Gemiddelde salaris van functie X")
@@ -19,18 +24,18 @@ print("6. Aantal medewerkers met functie X bij afdeling Y")
 print("W. Alle info naar bestand")
 print("X. Exit")
 
-isRunning = True
 choice = input("Kies een nummer uit het menu: ")
+os.system("cls")
 
-#gemiddeld salaris
+#variables
 listLength = 0
 listLength = len(vwList)
-totalIncome = 0
-averageIncome = 0
-totalFunctionIncome = 0
-averageFunctionIncome = 0
 
+#gemiddeld salaris
 if choice =="1":
+    totalIncome = 0
+    averageIncome = 0
+
     for Salaris_bruto in vwList:
         totalIncome += int(Salaris_bruto["Salaris_bruto"])
         averageIncome = totalIncome / listLength
@@ -40,13 +45,22 @@ if choice =="1":
     
 #gemiddeld salaris voor functie X
 elif choice =="2":
-    function = input("Voer een functie in waar je het gemiddeld van wilt weten: ")
-    for Salaris_Bruto in vwList:
-        averageFunctionIncome = totalFunctionIncome / listLength
-    print(f"Gemiddelde salaris van {function}:\n{averageFunctionIncome} euro")
+    totalFunctionIncome = 0
+    averageFunctionIncome = 0
+    function = input("Voer een functie in waar je het gemiddelde salaris van wilt weten\n")
+    os.system("cls")
 
+    for vw in vwList:
+        if vw["Functie"] == function and (vw["Salaris_bruto"]):
+            totalFunctionIncome += int(vw["Salaris_bruto"])
+    averageFunctionIncome = totalFunctionIncome / listLength
+
+    averageFunctionIncome = round(averageFunctionIncome)
+    print(f"Gemiddelde salaris van {function}\n{averageFunctionIncome} euro")
 
 #aantal werknemers binnen 2 jaar met pensioen
+
+
 
 #aantal chauffeurs
 elif choice =="4":
