@@ -19,12 +19,15 @@ print("X. Exit")
 isRunning = True
 choice = input("Kies een nummer uit het menu: ")
 
-#gemiddeld salaris
+#variabelen
 listLength = 0
 listLength = len(vwList)
 totalIncome = 0
 averageIncome = 0
 
+totalDrivers = 0
+
+#gemiddeld salaris
 if choice =="1":
     for Salaris_bruto in vwList:
         totalIncome += int(Salaris_bruto["Salaris_bruto"])
@@ -38,11 +41,11 @@ if choice =="1":
 #aantal werknemers binnen 2 jaar met pensioen
 
 #aantal chauffeurs
-totalDrivers = 0
 
-for vw in vwList:
-   if vw["Functie"] == "Chauffeur":
-    totalDrivers += 1
+elif choice =="4":
+    for vw in vwList:
+        if vw["Functie"] == "Chauffeur":
+            totalDrivers += 1
 
 print(f"Aantal chauffeurs: {totalDrivers}")
 
