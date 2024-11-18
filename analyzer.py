@@ -5,6 +5,9 @@ myReport = open("report.txt", "w")
 reader = csv.DictReader(vwFile, delimiter=";")
 vwList = list(reader)
 
+#import datetime for choice 5
+import datetime
+
 #start-menu
 print("Keuzemenu:")
 print("1. Gemiddeld salaris")
@@ -57,7 +60,7 @@ elif choice =="4":
 #top 10 langst in dienst
 elif choice =="5":
     print(f"Top 10 werknemers langst in dienst:")
-    data_sorted = sorted(vwList, key=lambda row:(row["Datum in dienst"]), reverse=True)
+    data_sorted = sorted(vwList, key=lambda row:datetime.datetime.strptime(row["Datum in dienst"], "%d-%m-%Y"), reverse=False)
     for i in range(10):
         longestEmployed = data_sorted[i]
         print(f"{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}")
