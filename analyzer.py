@@ -6,7 +6,7 @@ reader = csv.DictReader(vwFile, delimiter=";")
 vwList = list(reader)
 
 #start-menu
-print("Kies een optie:")
+print("Keuzemenu:")
 print("1. Gemiddelde salaris")
 print("2. Gemiddelde salaris van functie X")
 print("3. Aantal werknemers binnen 2 jaar met pensioen")
@@ -15,6 +15,9 @@ print("5. Top 10 langst in dienst")
 print("6. Aantal medewerkers met functie X bij afdeling Y")
 print("W. Alle info naar bestand")
 print("X. Exit")
+isRunning = True
+inputNumber = input("Kies een nummer uit het menu: ")
+
 
 #gemiddeld salaris
 totalIncome = 0
@@ -30,7 +33,9 @@ for Salaris_bruto in vwList:
 #aantal werknemers binnen 2 jaar met pensioen
 
 #aantal chauffeurs
+
 #top 10 langst in dienst
+
 #aantal medewerkers met functie X bij afdeling Y
 
 #export (w)
