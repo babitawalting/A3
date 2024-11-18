@@ -19,7 +19,7 @@ print("X. Exit")
 isRunning = True
 choice = input("Kies een nummer uit het menu: ")
 
-#variabelen
+#gemiddeld salaris
 listLength = 0
 listLength = len(vwList)
 totalIncome = 0
@@ -27,9 +27,6 @@ averageIncome = 0
 totalFunctionIncome = 0
 averageFunctionIncome = 0
 
-totalDrivers = 0
-
-#gemiddeld salaris
 if choice =="1":
     for Salaris_bruto in vwList:
         totalIncome += int(Salaris_bruto["Salaris_bruto"])
@@ -49,8 +46,8 @@ elif choice =="2":
 #aantal werknemers binnen 2 jaar met pensioen
 
 #aantal chauffeurs
-
 elif choice =="4":
+    totalDrivers = 0
     for vw in vwList:
         if vw["Functie"] == "Chauffeur":
             totalDrivers += 1
@@ -62,10 +59,22 @@ elif choice =="5":
     print(f"Top 10 werknemers langst in dienst:")
     data_sorted = sorted(vwList, key=lambda row:(row["Datum in dienst"]), reverse=True)
     for i in range(10):
-        date_hired = data_sorted[i]
-        print(f"{date_hired['Voornaam']}, {date_hired['Achternaam']}, {date_hired['Datum in dienst']}")
+        longestEmployed = data_sorted[i]
+        print(f"{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}")
 
 #aantal medewerkers met functie X bij afdeling Y
+elif choice =="6":
+    print(f"Aantal medewerkers met functie X bij afdeling Y:")
+    functionChoice = input("Welke functie?")
+    departmentChoice = input("Welke afdeling?")
+    employeeCount = 0
+    
+    for vw in vwList:
+        if vw["Functie"] == functionChoice and vw["Afdeling"] == departmentChoice:
+            employeeCount += 1
+    print(f"Aantal medewerkers met functie {functionChoice} bij afdeling {departmentChoice}: {employeeCount}")
 
 #export (w)
+myReport.write("--------------------------------")
+
 #exit (x)
