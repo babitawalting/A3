@@ -47,9 +47,15 @@ elif choice =="4":
         if vw["Functie"] == "Chauffeur":
             totalDrivers += 1
 
-print(f"Aantal chauffeurs: {totalDrivers}")
+    print(f"Aantal chauffeurs: {totalDrivers}")
 
 #top 10 langst in dienst
+elif choice =="5":
+    print(f"Top 10 werknemers langst in dienst:")
+    data_sorted = sorted(vwList, key=lambda row:(row["Datum in dienst"]), reverse=True)
+    for i in range(10):
+        date_hired = data_sorted[i]
+        print(f"{date_hired['Voornaam']}, {date_hired['Achternaam']}, {date_hired['Datum in dienst']}")
 
 #aantal medewerkers met functie X bij afdeling Y
 
