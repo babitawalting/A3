@@ -17,6 +17,15 @@ print("W. Alle info naar bestand")
 print("X. Exit")
 
 #gemiddeld salaris
+totalIncome = 0
+averageIncome = 0
+listLength = 0
+listLength = len(vwList)
+
+for Salaris_bruto in vwList:
+    totalIncome += float(Salaris_bruto["Salaris_bruto"])
+    averageValue = totalIncome / listLength
+
 #gemiddeld salaris voor functie X
 #aantal werknemers binnen 2 jaar met pensioen
 
