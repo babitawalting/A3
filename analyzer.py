@@ -59,7 +59,10 @@ elif choice =="2":
     print(f"Gemiddelde salaris van {function}\n{averageFunctionIncome} euro")
 
 #aantal werknemers binnen 2 jaar met pensioen
-
+elif choice =="3":
+    now = datetime.datetime.now()
+    print(now.strftime("%d/%m/%Y"))
+    
 
 
 #aantal chauffeurs
