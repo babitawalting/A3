@@ -78,6 +78,6 @@ elif choice =="6":
     print(f"Aantal medewerkers met functie {functionChoice} bij afdeling {departmentChoice}: {employeeCount}")
 
 #export (w)
-myReport.write("--------------------------------")
+
 
 #exit (x)
