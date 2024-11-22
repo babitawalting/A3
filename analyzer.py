@@ -69,9 +69,8 @@ while isRunning:
     if choice =="3":
         now = datetime.datetime.now()
         print(now.strftime("%d/%m/%Y"))
+
     
-
-
 #aantal chauffeurs
     if choice =="4":
         totalDrivers = 0
@@ -94,6 +93,7 @@ while isRunning:
 
         input("\n---------------\nDruk op enter om door te gaan")
         os.system("cls")
+
 #aantal medewerkers met functie X bij afdeling Y
     if choice =="6":
         print(f"Aantal medewerkers met functie X bij afdeling Y")
@@ -111,8 +111,11 @@ while isRunning:
 
 #export (w)
 
-
 #exit (x)
-    if(choice.lower() == 'x'):
-        isRunning = False
-    print("Data-analyse gesloten. Tot ziens!")
+    if (choice.lower() == 'x'):
+        confirm = input(f"Weet je het zeker dat je wilt stoppen?\nJa: sluit programma af\nNee: ga terug naar het menu\n\nBevestig met: ")
+        
+        if (confirm.lower() == "ja"):
+            isRunning = False
+            os.system("cls")
+            print("Data-analyse gesloten. Tot ziens!\n")
