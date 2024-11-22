@@ -23,7 +23,7 @@ while isRunning:
     print("5. Top 10 langst in dienst")
     print("6. Aantal medewerkers met functie X bij afdeling Y")
     print("W. Informatie exporteren naar een apart bestand")
-    print("X. Exit")
+    print("X. Programma sluiten")
 
     choice = input("\nKies een nummer uit het menu of druk x om te stoppen: ")
 
@@ -112,7 +112,7 @@ while isRunning:
 #export (w)
 
 #exit (x)
-    if (choice.lower() == 'x'):
+    if (choice.lower() == "x"):
         confirm = input(f"Weet je het zeker dat je wilt stoppen?\nJa: sluit programma af\nNee: ga terug naar het menu\n\nBevestig met: ")
         
         if (confirm.lower() == "ja"):
