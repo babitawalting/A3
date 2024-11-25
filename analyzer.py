@@ -67,9 +67,15 @@ while isRunning:
 
 #aantal werknemers binnen 2 jaar met pensioen
     if choice =="3":
-        now = datetime.datetime.now()
-        print(now.strftime("%d/%m/%Y"))
-
+        totalEmployeesRetirement = 0
+        for vw in vwList:
+            if vw["Geboortedatum"] <= "1959":
+                totalEmployeesRetirement =+ 1
+        
+        print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
+        
+        input("\n---------------\nDruk op enter om door te gaan")
+        os.system("cls")
     
 #aantal chauffeurs
     if choice =="4":
