@@ -30,7 +30,6 @@ while isRunning:
     os.system("cls")
 
 #variables
-    listLength = 0
     listLength = len(vwList)
 
 #gemiddeld salaris
@@ -72,9 +71,8 @@ while isRunning:
         d2 = datetime.date(1957, 1, 1)
 
         for vw in vwList:
-            geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
-            if d2 <= geboortedatum <= d1:
-                totalEmployeesRetirement += 1
+            if vw["Geboortedatum"] <= "1959":
+                totalEmployeesRetirement =+ 1
         
         print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
         
