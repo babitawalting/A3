@@ -30,7 +30,6 @@ while isRunning:
     os.system("cls")
 
 #variables
-    listLength = 0
     listLength = len(vwList)
 
 #gemiddeld salaris
