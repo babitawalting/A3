@@ -66,11 +66,15 @@ while isRunning:
         os.system("cls")
 
 #aantal werknemers binnen 2 jaar met pensioen
-    if choice =="3":
+    if choice == "3":
         totalEmployeesRetirement = 0
+        d1 = datetime.date(1959, 12, 31)
+        d2 = datetime.date(1957, 1, 1)
+
         for vw in vwList:
-            if vw["Geboortedatum"] <= "1959":
-                totalEmployeesRetirement =+ 1
+            geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
+            if d2 <= geboortedatum <= d1:
+                totalEmployeesRetirement += 1
         
         print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
         
