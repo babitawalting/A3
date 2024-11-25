@@ -34,23 +34,30 @@ while isRunning:
     listLength = len(vwList)
 
 #gemiddeld salaris
-    if choice =="1":
+    if choice =="1" or choice =="w":
         totalIncome = 0
         averageIncome = 0
+        outputA = ""
 
         for Salaris_bruto in vwList:
             totalIncome += int(Salaris_bruto["Salaris_bruto"])
             averageIncome = totalIncome / listLength
+            averageIncome = round(averageIncome)
+        
+        outputA += (f"Gemiddeld salaris van alle werknemers: {averageIncome} euro\n")     
+        if choice == "1":
+            print(f"{outputA}")
+            input("\n---------------\nDruk op enter om door te gaan")
+            os.system("cls")
+        else:
+            myReport.write(f'{outputA}')
+            myReport.flush() #Flush zodat naar file wordt geschreven
 
-        averageIncome = round(averageIncome)
-        print(f"Gemiddeld salaris van alle werknemers:\n{averageIncome} euro")
-        input("\n---------------\nDruk op enter om door te gaan")
-        os.system("cls")
-    
 #gemiddeld salaris voor functie X
-    if choice =="2":
+    if choice =="2" or (choice.lower() == "w"):
         totalFunctionIncome = 0
         averageFunctionIncome = 0
+        outputB = ""
         function = input("Voer een functie in waar je het gemiddelde salaris van wilt weten\n")
         os.system("cls")
 
@@ -58,140 +65,100 @@ while isRunning:
             if vw["Functie"] == function and (vw["Salaris_bruto"]):
                 totalFunctionIncome += int(vw["Salaris_bruto"])
         averageFunctionIncome = totalFunctionIncome / listLength
-
         averageFunctionIncome = round(averageFunctionIncome)
-        print(f"Gemiddelde salaris van {function}\n{averageFunctionIncome} euro")
-
-        input("\n---------------\nDruk op enter om door te gaan")
-        os.system("cls")
+        
+        outputB += f"Gemiddelde salaris van {function}: {averageFunctionIncome} euro"
+        if choice == "2":
+            print(f"{outputB}")
+            input("\n---------------\nDruk op enter om door te gaan")
+            os.system("cls")
+        else:
+            myReport.write(f'{outputB}' + '\n')
+            myReport.flush() #Flush zodat naar file wordt geschreven
 
 #aantal werknemers binnen 2 jaar met pensioen
-    if choice == "3":
+    if choice == "3" or (choice.lower() == "w"):
         totalEmployeesRetirement = 0
         d1 = datetime.date(1959, 12, 31)
         d2 = datetime.date(1957, 1, 1)
+        outputC = ""
 
         for vw in vwList:
             geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
             if d2 <= geboortedatum <= d1:
                 totalEmployeesRetirement += 1
         
-        print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
-        
-        input("\n---------------\nDruk op enter om door te gaan")
-        os.system("cls")
+        outputC += f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}"
+        if choice == "3":
+            print(f"{outputC}")
+            input("\n---------------\nDruk op enter om door te gaan")
+            os.system("cls")
+        else:
+            myReport.write(f'{outputC}' + '\n')
+            myReport.flush() #Flush zodat naar file wordt geschreven
     
 #aantal chauffeurs
-    if choice =="4":
+    if choice =="4"  or (choice.lower() == "w"):
         totalDrivers = 0
+        outputD = ""
+
         for vw in vwList:
             if vw["Functie"] == "Chauffeur":
                 totalDrivers += 1
 
-        print(f"Aantal chauffeurs: {totalDrivers}")
-
-        input("\n---------------\nDruk op enter om door te gaan")
-        os.system("cls")
+        outputD += f"Aantal chauffeurs: {totalDrivers}"
+        if choice == "4":
+            print(f"{outputD}")
+            input("\n---------------\nDruk op enter om door te gaan")
+            os.system("cls")
+        else:
+            myReport.write(f'{outputD}' + '\n')
+            myReport.flush() #Flush zodat naar file wordt geschreven'
 
 #top 10 langst in dienst
-    if choice =="5":
-        print(f"Top 10 werknemers langst in dienst:")
+    if choice =="5" or (choice.lower() == "w"):
+        outputE= ""
         data_sorted = sorted(vwList, key=lambda row:datetime.datetime.strptime(row["Datum in dienst"], "%d-%m-%Y"), reverse=False)
         for i in range(10):
             longestEmployed = data_sorted[i]
-            print(f"{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}")
-
-        input("\n---------------\nDruk op enter om door te gaan")
-        os.system("cls")
+            outputE += f"{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']} \n"
+        
+        if choice == "5":
+            print(f"Top 10 werknemers langst in dienst:")
+            print(f"{outputE}")
+            input("\n---------------\nDruk op enter om door te gaan")
+            os.system("cls")
+        else:
+            myReport.write(f"Top 10 werknemers langst in dienst:\n")
+            myReport.write(f'{outputE}')
+            myReport.flush() #Flush zodat naar file wordt geschreven
 
 #aantal medewerkers met functie X bij afdeling Y
-    if choice =="6":
+    if choice =="6" or (choice.lower() == "w"):
         print(f"Aantal medewerkers met functie X bij afdeling Y")
         functionChoice = input("Welke functie?\n")
         departmentChoice = input("Welke afdeling?\n")
         employeeCount = 0
+        outputF = ""
     
         for vw in vwList:
             if vw["Functie"] == functionChoice and vw["Afdeling"] == departmentChoice:
                 employeeCount += 1
-        print(f"\nAantal medewerkers met functie {functionChoice} bij afdeling {departmentChoice}: {employeeCount}")
-
-        input("\n---------------\nDruk op enter om door te gaan")
-        os.system("cls")
 
 
-#export (w)
-    if (choice.lower() == "w"):
+        outputF += f"Aantal medewerkers met functie {functionChoice} bij afdeling {departmentChoice}: {employeeCount}"
+        if choice == "6":
+            print(f"{outputF}")
+            input("\n---------------\nDruk op enter om door te gaan")
+            os.system("cls")
+        else:
+            myReport.write(f'{outputF}' + '\n')
+            myReport.flush() #Flush zodat naar file wordt geschreven
+            os.system("cls")
+            print("File Written!")
+            choice = input("\n---------------\nDruk op enter om door te gaan of druk x om te stoppen:")
+            os.system("cls")
 
-#gemiddeld salaris(w)
-        totalIncome = 0
-        averageIncome = 0
-
-        for Salaris_bruto in vwList:
-            totalIncome += int(Salaris_bruto["Salaris_bruto"])
-            averageIncome = totalIncome / listLength
-
-        averageIncome = round(averageIncome)
-
-#gemiddeld salaris voor functie X(w)
-        totalFunctionIncome = 0
-        averageFunctionIncome = 0
-        function = input("Voer een functie in waar je het gemiddelde salaris van wilt weten\n")
-        os.system("cls")
-
-        for vw in vwList:
-            if vw["Functie"] == function and (vw["Salaris_bruto"]):
-                totalFunctionIncome += int(vw["Salaris_bruto"])
-        averageFunctionIncome = totalFunctionIncome / listLength
-        averageFunctionIncome = round(averageFunctionIncome)
-        os.system("cls")
-
-#aantal werknemers binnen 2 jaar met pensioen(w)
-        totalEmployeesRetirement = 0
-        d1 = datetime.date(1959, 12, 31)
-        d2 = datetime.date(1957, 1, 1)
-
-        for vw in vwList:
-            geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
-            if d2 <= geboortedatum <= d1:
-                totalEmployeesRetirement += 1
-
-#aantal chauffeurs(w)
-        totalDrivers = 0
-        for vw in vwList:
-            if vw["Functie"] == "Chauffeur":
-                totalDrivers += 1
-
-#top 10 langst in dienst(w)
-        data_sorted = sorted(vwList, key=lambda row:datetime.datetime.strptime(row["Datum in dienst"], "%d-%m-%Y"), reverse=False)
-        for i in range(10):
-            longestEmployed = data_sorted[i]
-
-#aantal medewerkers met functie X bij afdeling Y(w)
-        functionChoice = input("Welke functie?\n")
-        departmentChoice = input("Welke afdeling?\n")
-        employeeCount = 0
-    
-        for vw in vwList:
-            if vw["Functie"] == functionChoice and vw["Afdeling"] == departmentChoice:
-                employeeCount += 1
-        
-        os.system("cls")
-
-        exportConfirm = input(f"Weet je het zeker dat je wilt exporteren?\nJa: exporteer data\nNee: ga terug naar het menu\n\nBevestig met: ")
-
-        if (exportConfirm.lower() == "ja"):
-            myReport.write('-------------------------------------' + '\n' )
-            myReport.write('Statistieken berekend op' + '\n' )
-            myReport.write(f'Gemiddeld salaris van alle werknemers: {averageIncome} euro' + '\n')
-            myReport.write(f'Gemiddeld salaris voor functie {function}: {averageFunctionIncome} euro' + '\n')
-            myReport.write(f'Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}' + '\n')
-            myReport.write(f'Aantal chauffeurs: {totalDrivers}' + '\n')
-            myReport.write(f'{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}' + '\n')
-            myReport.write(f'{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}' + '\n')
-            myReport.write(f'Aantal medewerkers met functie {functionChoice} bij afdeling {departmentChoice}: {employeeCount}' + '\n')
-            myReport.flush()
-    os.system("cls")
 
 #exit (x)
     if (choice.lower() == "x"):
@@ -205,3 +172,4 @@ while isRunning:
 #Sluit beide bestanden af
 vwFile.close()
 myReport.close()
+
