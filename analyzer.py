@@ -70,7 +70,7 @@ while isRunning:
         totalEmployeesRetirement = 0
         for vw in vwList:
             if vw["Geboortedatum"] <= "1959":
-                totalEmployeesRetirement =+ 1
+                totalEmployeesRetirement += 1
         
         print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
         
