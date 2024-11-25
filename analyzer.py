@@ -119,7 +119,79 @@ while isRunning:
         input("\n---------------\nDruk op enter om door te gaan")
         os.system("cls")
 
+
 #export (w)
+    if (choice.lower() == "w"):
+
+#gemiddeld salaris(w)
+        totalIncome = 0
+        averageIncome = 0
+
+        for Salaris_bruto in vwList:
+            totalIncome += int(Salaris_bruto["Salaris_bruto"])
+            averageIncome = totalIncome / listLength
+
+        averageIncome = round(averageIncome)
+
+#gemiddeld salaris voor functie X(w)
+        totalFunctionIncome = 0
+        averageFunctionIncome = 0
+        function = input("Voer een functie in waar je het gemiddelde salaris van wilt weten\n")
+        os.system("cls")
+
+        for vw in vwList:
+            if vw["Functie"] == function and (vw["Salaris_bruto"]):
+                totalFunctionIncome += int(vw["Salaris_bruto"])
+        averageFunctionIncome = totalFunctionIncome / listLength
+        averageFunctionIncome = round(averageFunctionIncome)
+        os.system("cls")
+
+#aantal werknemers binnen 2 jaar met pensioen(w)
+        totalEmployeesRetirement = 0
+        d1 = datetime.date(1959, 12, 31)
+        d2 = datetime.date(1957, 1, 1)
+
+        for vw in vwList:
+            geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
+            if d2 <= geboortedatum <= d1:
+                totalEmployeesRetirement += 1
+
+#aantal chauffeurs(w)
+        totalDrivers = 0
+        for vw in vwList:
+            if vw["Functie"] == "Chauffeur":
+                totalDrivers += 1
+
+#top 10 langst in dienst(w)
+        data_sorted = sorted(vwList, key=lambda row:datetime.datetime.strptime(row["Datum in dienst"], "%d-%m-%Y"), reverse=False)
+        for i in range(10):
+            longestEmployed = data_sorted[i]
+
+#aantal medewerkers met functie X bij afdeling Y(w)
+        functionChoice = input("Welke functie?\n")
+        departmentChoice = input("Welke afdeling?\n")
+        employeeCount = 0
+    
+        for vw in vwList:
+            if vw["Functie"] == functionChoice and vw["Afdeling"] == departmentChoice:
+                employeeCount += 1
+        
+        os.system("cls")
+
+        exportConfirm = input(f"Weet je het zeker dat je wilt exporteren?\nJa: exporteer data\nNee: ga terug naar het menu\n\nBevestig met: ")
+
+        if (exportConfirm.lower() == "ja"):
+            myReport.write('-------------------------------------' + '\n' )
+            myReport.write('Statistieken berekend op' + '\n' )
+            myReport.write(f'Gemiddeld salaris van alle werknemers: {averageIncome} euro' + '\n')
+            myReport.write(f'Gemiddeld salaris voor functie {function}: {averageFunctionIncome} euro' + '\n')
+            myReport.write(f'Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}' + '\n')
+            myReport.write(f'Aantal chauffeurs: {totalDrivers}' + '\n')
+            myReport.write(f'{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}' + '\n')
+            myReport.write(f'{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']}' + '\n')
+            myReport.write(f'Aantal medewerkers met functie {functionChoice} bij afdeling {departmentChoice}: {employeeCount}' + '\n')
+            myReport.flush()
+    os.system("cls")
 
 #exit (x)
     if (choice.lower() == "x"):
@@ -129,3 +201,7 @@ while isRunning:
             isRunning = False
             os.system("cls")
             print("Data-analyse gesloten. Tot ziens!\n")
+
+#Sluit beide bestanden af
+vwFile.close()
+myReport.close()
