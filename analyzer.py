@@ -66,21 +66,20 @@ while isRunning:
         os.system("cls")
 
 #aantal werknemers binnen 2 jaar met pensioen
+    if choice == "3":
+        totalEmployeesRetirement = 0
+        d1 = datetime.date(1959, 12, 31)
+        d2 = datetime.date(1957, 1, 1)
 
-if choice == "3":
-    totalEmployeesRetirement = 0
-    d1 = datetime.date(1959, 12, 31)
-    d2 = datetime.date(1957, 1, 1)
-
-    for vw in vwList:
-        geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%Y-%m-%d").date()
-        if d2 <= geboortedatum <= d1:
-            totalEmployeesRetirement += 1
-    
-    print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
-    
-    input("\n---------------\nDruk op enter om door te gaan")
-    os.system("cls")
+        for vw in vwList:
+            geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
+            if d2 <= geboortedatum <= d1:
+                totalEmployeesRetirement += 1
+        
+        print(f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}")
+        
+        input("\n---------------\nDruk op enter om door te gaan")
+        os.system("cls")
     
 #aantal chauffeurs
     if choice =="4":
