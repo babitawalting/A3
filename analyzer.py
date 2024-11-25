@@ -8,7 +8,7 @@ vwList = list(reader)
 #import os to clear screen
 import os
 #import datetime for choice 3 and 5
-import datetime
+from datetime import datetime
 
 isRunning = True
 while isRunning:
@@ -44,12 +44,14 @@ while isRunning:
             averageIncome = totalIncome / listLength
             averageIncome = round(averageIncome)
         
-        outputA += (f"Gemiddeld salaris van alle werknemers: {averageIncome} euro\n")     
+        outputA += (f"1. Gemiddeld salaris van alle werknemers: {averageIncome} euro\n")     
         if choice == "1":
             print(f"{outputA}")
             input("\n---------------\nDruk op enter om door te gaan")
             os.system("cls")
         else:
+            exportTime= datetime.now()
+            myReport.write(f'Statistieken berekend op {exportTime.strftime("%Y-%m-%d %H:%M:%S")}'+ '\n')
             myReport.write(f'{outputA}')
             myReport.flush() #Flush zodat naar file wordt geschreven
 
@@ -67,7 +69,7 @@ while isRunning:
         averageFunctionIncome = totalFunctionIncome / listLength
         averageFunctionIncome = round(averageFunctionIncome)
         
-        outputB += f"Gemiddelde salaris van {function}: {averageFunctionIncome} euro"
+        outputB += f"2. Gemiddelde salaris van {function}: {averageFunctionIncome} euro"
         if choice == "2":
             print(f"{outputB}")
             input("\n---------------\nDruk op enter om door te gaan")
@@ -79,16 +81,16 @@ while isRunning:
 #aantal werknemers binnen 2 jaar met pensioen
     if choice == "3" or (choice.lower() == "w"):
         totalEmployeesRetirement = 0
-        d1 = datetime.date(1959, 12, 31)
-        d2 = datetime.date(1957, 1, 1)
+        d1 = datetime(1959, 12, 31)
+        d2 = datetime(1957, 1, 1)
         outputC = ""
 
         for vw in vwList:
-            geboortedatum = datetime.datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y").date()
+            geboortedatum = datetime.strptime(vw["Geboortedatum"], "%d-%m-%Y")
             if d2 <= geboortedatum <= d1:
                 totalEmployeesRetirement += 1
         
-        outputC += f"Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}"
+        outputC += f"3. Aantal werknemers binnen 2 jaar met pensioen: {totalEmployeesRetirement}"
         if choice == "3":
             print(f"{outputC}")
             input("\n---------------\nDruk op enter om door te gaan")
@@ -106,7 +108,7 @@ while isRunning:
             if vw["Functie"] == "Chauffeur":
                 totalDrivers += 1
 
-        outputD += f"Aantal chauffeurs: {totalDrivers}"
+        outputD += f"4. Aantal chauffeurs: {totalDrivers}"
         if choice == "4":
             print(f"{outputD}")
             input("\n---------------\nDruk op enter om door te gaan")
@@ -118,10 +120,10 @@ while isRunning:
 #top 10 langst in dienst
     if choice =="5" or (choice.lower() == "w"):
         outputE= ""
-        data_sorted = sorted(vwList, key=lambda row:datetime.datetime.strptime(row["Datum in dienst"], "%d-%m-%Y"), reverse=False)
+        data_sorted = sorted(vwList, key=lambda row: datetime.strptime(row["Datum in dienst"], "%d-%m-%Y"))
         for i in range(10):
             longestEmployed = data_sorted[i]
-            outputE += f"{longestEmployed['Voornaam']}, {longestEmployed['Achternaam']}, {longestEmployed['Datum in dienst']} \n"
+            outputE += f"- {longestEmployed['Voornaam']} {longestEmployed['Achternaam']} sinds: {longestEmployed['Datum in dienst']} \n"
         
         if choice == "5":
             print(f"Top 10 werknemers langst in dienst:")
@@ -129,7 +131,7 @@ while isRunning:
             input("\n---------------\nDruk op enter om door te gaan")
             os.system("cls")
         else:
-            myReport.write(f"Top 10 werknemers langst in dienst:\n")
+            myReport.write(f"5. Top 10 werknemers langst in dienst:\n")
             myReport.write(f'{outputE}')
             myReport.flush() #Flush zodat naar file wordt geschreven
 
@@ -152,7 +154,7 @@ while isRunning:
             input("\n---------------\nDruk op enter om door te gaan")
             os.system("cls")
         else:
-            myReport.write(f'{outputF}' + '\n')
+            myReport.write(f'6. {outputF}' + '\n')
             myReport.flush() #Flush zodat naar file wordt geschreven
             os.system("cls")
             print("File Written!")
