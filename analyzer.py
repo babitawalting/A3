@@ -25,12 +25,11 @@ while isRunning:
     print("W. Informatie exporteren naar een apart bestand")
     print("X. Programma sluiten")
 
-    choice = input("\nKies een nummer uit het menu of druk x om te stoppen: ")
+    choice = input("\nKies een nummer of letter uit het menu: ")
 
     os.system("cls")
 
 #variables
-    listLength = 0
     listLength = len(vwList)
 
 #gemiddeld salaris
@@ -47,11 +46,11 @@ while isRunning:
         outputA += (f"1. Gemiddeld salaris van alle werknemers: {averageIncome} euro\n")     
         if choice == "1":
             print(f"{outputA}")
-            input("\n---------------\nDruk op enter om door te gaan")
+            input("---------------\nDruk op enter om door te gaan")
             os.system("cls")
         else:
             exportTime= datetime.now()
-            myReport.write(f'Statistieken berekend op {exportTime.strftime("%Y-%m-%d %H:%M:%S")}'+ '\n')
+            myReport.write(f'Statistieken berekend op: {exportTime.strftime("%Y-%m-%d, %H:%M:%S")}'+ '\n')
             myReport.write(f'{outputA}')
             myReport.flush() #Flush zodat naar file wordt geschreven
 
@@ -128,7 +127,7 @@ while isRunning:
         if choice == "5":
             print(f"Top 10 werknemers langst in dienst:")
             print(f"{outputE}")
-            input("\n---------------\nDruk op enter om door te gaan")
+            input("---------------\nDruk op enter om door te gaan")
             os.system("cls")
         else:
             myReport.write(f"5. Top 10 werknemers langst in dienst:\n")
@@ -157,8 +156,8 @@ while isRunning:
             myReport.write(f'6. {outputF}' + '\n')
             myReport.flush() #Flush zodat naar file wordt geschreven
             os.system("cls")
-            print("File Written!")
-            choice = input("\n---------------\nDruk op enter om door te gaan of druk x om te stoppen:")
+            print("Data-analyse geëxporteerd!")
+            choice = input("\n---------------\nDruk op enter om door te gaan of druk x om te stoppen: ")
             os.system("cls")
 
 

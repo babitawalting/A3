@@ -1,0 +1,17 @@
+Statistieken berekend op: 2024-11-26, 12:18:48
+1. Gemiddeld salaris van alle werknemers: 1876 euro
+2. Gemiddelde salaris van Chauffeur: 657 euro
+3. Aantal werknemers binnen 2 jaar met pensioen: 29
+4. Aantal chauffeurs: 354
+5. Top 10 werknemers langst in dienst:
+- Mattijn van der Wal sinds: 9-11-1995 
+- Marjolijn Postma sinds: 13-11-1995 
+- Idse van de Velden sinds: 20-11-1995 
+- Kyra Wolters sinds: 22-11-1995 
+- Davy Koning sinds: 2-12-1995 
+- Wietse de Bruijn sinds: 5-12-1995 
+- Daan de Jonge sinds: 14-12-1995 
+- Frederika van de Brink sinds: 20-12-1995 
+- Danny van de Brink sinds: 6-1-1996 
+- Carolus Schipper sinds: 7-1-1996 
+6. Aantal medewerkers met functie Chauffeur bij afdeling R&R: 72
